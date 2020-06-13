@@ -1,0 +1,23 @@
+<!-- This template is used to display the delete confirm message when Deleteview is called-->
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block content %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+<form method="POST" >
+{% csrf_token %}
+<div class="p_card">
+<legend> Are you sure you want to delete the post:{{object.title}}</legend>
+<button type="submit">Sure, Delete</button><br><br>
+</div>
+</form>
+<a href="{% url 'home:posts-detail' object.id %}"><button>Cancel</button>
+{% endblock %}
+</body>
+</html>

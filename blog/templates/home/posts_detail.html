@@ -1,0 +1,44 @@
+<!-- This template is used to display the details of the post in particular it is displayed as soon as the displayview is called-->
+
+
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+            <div class="entry2"><br><br><br>
+           
+              <div class="excerpt">
+              <h2><u>{{object.title}}</u></h2>
+              <img src="{{object.image.url}}" alt="Image" class="img-fluid rounded" width="400px">
+              
+              <h3></h3>
+              {% if object.video_enable == True %}
+              <video width="600" height="400" controls>
+              <source src="{{object.video.url}}"/>
+              </video>
+              {% endif%}<br><br><br>
+              <p>{{object.content}}</p>
+
+              <div class="post-meta align-items-center text-left clearfix">
+                <figure class="author-figure mb-0 mr-3 float-left"><img src="{{object.author.profile.image.url}}" alt="Image" class="img-fluid"></figure>
+                <span class="d-inline-block mt-1">By {{object.author}}</span>
+                <span>&nbsp;-&nbsp; {{object.date_posted}}</span>
+              </div>
+              </div>
+             </div> 
+{% if object.author == user%}             
+<div class="p_card">
+<a href="{% url 'home:posts-update' object.id %}"><button type="submit">Update</button></a>
+<br><br><br>
+<a href="{% url 'home:posts-delete' object.id %}"><button type="submit">Delete</button></a>
+{% endif %}
+</div>
+
+{% endblock %}
+</body>
+</html>

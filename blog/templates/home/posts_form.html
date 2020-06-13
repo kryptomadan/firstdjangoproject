@@ -1,0 +1,25 @@
+<!-- This template is used to Create and Update the posts (frontend) -->
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block content %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+<br>
+<form method="POST" enctype="multipart/form-data" >
+{% csrf_token %}
+<div class="p_card">
+{{ form|crispy }}
+ 
+<p><button type="submit">Create</button></p>
+</div>
+</form>
+{% endblock %}
+</body>
+</html>

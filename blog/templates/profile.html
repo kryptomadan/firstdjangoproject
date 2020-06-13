@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block content %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+<br><br>
+<br>
+
+{% for msg in messages %}
+<div class="alert alert-success">
+{{msg}}
+</div>{% endfor %}
+{% if user.is_authenticated %}
+<div class="card">
+  <img src="{{ user.profile.image.url }}" alt="John" style="width:100%">
+  <h1>{{user.username}}</h1>
+  <p class="title">BLOGGER</p>
+  <p>{{user.email}}</p>
+</div>{% endif %}
+ <br>
+<form method="POST" enctype="multipart/form-data" >
+{% csrf_token %}
+<div class="p_card">
+  {{ u_form|crispy }}
+  {{ p_form|crispy }}
+<p><button type="submit">Update</button></p>
+</div>
+</form>
+{% endblock %}
+</body>
+</html>
